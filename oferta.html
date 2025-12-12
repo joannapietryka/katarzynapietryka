@@ -523,6 +523,8 @@
 
   window.addEventListener('load', function() {
     const form = document.getElementById('wf-form-Email-Form');
+    const errorMsg = form.parentNode.querySelector('.w-form-fail');
+    if (errorMsg) errorMsg.style.display = 'none';
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -535,7 +537,7 @@
 
           setTimeout(function() {
             form.parentNode.querySelector('.w-form-done').style.display = 'none';
-          }, 5000);
+          }, 15000);
         }, function(error) {
           form.parentNode.querySelector('.w-form-fail').style.display = 'block';
           form.parentNode.querySelector('.w-form-done').style.display = 'none';
