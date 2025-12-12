@@ -515,19 +515,34 @@
     emailjs.init("ujbEtw7oReMES7a64"); 
   })();
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
-  window.onload = function() {
-    document.getElementById('wf-form-Email-Form').addEventListener('submit', function(event) {
+  (function(){
+    emailjs.init("ujbEtw7oReMES7a64"); 
+  })();
+
+  window.addEventListener('load', function() {
+    const form = document.getElementById('wf-form-Email-Form');
+
+    form.addEventListener('submit', function(event) {
       event.preventDefault();
 
       emailjs.sendForm('service_wn6e3hp', 'template_kuislvu', this)
         .then(function() {
-          document.getElementById('wf-form-Email-Form').reset(); 
+          form.parentNode.querySelector('.w-form-done').style.display = 'block';
+          form.parentNode.querySelector('.w-form-fail').style.display = 'none';
+          form.reset(); 
+
+          setTimeout(function() {
+            form.parentNode.querySelector('.w-form-done').style.display = 'none';
+          }, 5000);
         }, function(error) {
-          alert('Coś poszło nie tak: ' + JSON.stringify(error));
+          form.parentNode.querySelector('.w-form-fail').style.display = 'block';
+          form.parentNode.querySelector('.w-form-done').style.display = 'none';
+          console.error('Błąd EmailJS:', error);
         });
     });
-  };
+  });
 </script>
 </body>
 </html>
