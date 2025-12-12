@@ -522,8 +522,7 @@
 
       emailjs.sendForm('service_wn6e3hp', 'template_kuislvu', this)
         .then(function() {
-          alert('Wiadomość wysłana!'); 
-          document.getElementById('formularz').reset(); 
+          document.getElementById('wf-form-Email-Form').reset(); 
         }, function(error) {
           alert('Coś poszło nie tak: ' + JSON.stringify(error));
         });
